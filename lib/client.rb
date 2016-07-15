@@ -4,7 +4,7 @@ class Client
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
     @stylist_id = attributes[:stylist_id]
-    @id = attributes.fetch(:id)
+    @id = attributes[:id]
   end
 
   define_method(:==) do |another_client|

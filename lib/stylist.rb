@@ -3,7 +3,7 @@ class Stylist
 
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
-    @id = attributes.fetch(:id)
+    @id = attributes[:id]
   end
 
   define_method(:==) do |another_stylist|
