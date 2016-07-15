@@ -5,7 +5,7 @@
 ## Technologies Used
 
 Application: Ruby, Sinatra<br>
-Testing: Rspec, Capybara<br>
+Testing: RSpec, Capybara<br>
 Database: Postgres
 
 Installation
