@@ -45,4 +45,13 @@ describe(Client) do
       expect(test_client.first_name()).to(eq("John"))
     end
   end
+
+  describe("#delete") do
+    it('should delete a client from the database') do
+      test_client = Client.new({first_name: "Jessica", last_name: "Brown"})
+      test_client.save()
+      test_client.delete()
+      expect(Client.all()).to(eq([]))
+    end
+  end
 end

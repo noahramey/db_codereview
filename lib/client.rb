@@ -42,11 +42,11 @@ class Client
   end
 
   define_method(:update) do |attributes|
-    @first_name = attributes.fetch("first_name", @first_name)
+    @first_name = attributes.fetch(:first_name, @first_name)
     if @first_name.include? "'"
       @first_name = @first_name.gsub(/'/, "ß")
     end
-    @last_name = attributes.fetch("last_name", @last_name)
+    @last_name = attributes.fetch(:last_name, @last_name)
     if @last_name.include? "'"
       @last_name = @last_name.gsub(/'/, "ß")
     end
@@ -54,5 +54,9 @@ class Client
 
     DB.exec("UPDATE clients SET first_name = '#{@first_name}' WHERE id = #{@id};")
     DB.exec("UPDATE clients SET last_name = '#{@last_name}' WHERE id = #{@id};")
+  end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM clients WHERE id = #{self.id()}")
   end
 end
