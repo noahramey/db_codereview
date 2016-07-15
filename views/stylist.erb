@@ -4,7 +4,7 @@
       <br><br>
       <h1 class="header center blue-text text-lighten-1"><%= @stylist.name() %></h1>
       <div class="row center">
-        <a href="/clients" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">View Other Clients</a>
+        <a href="/stylists" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">View Other Stylists</a>
         <a href="/" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Return Home</a>
       </div>
       <br>
@@ -27,6 +27,17 @@
     <% else %>
       <h3>This stylist has no clients.</h3>
     <% end %>
+
+    <h3>Add a client to <em><%= @stylist.name() %></em> </h3>
+
+    <form action="/clients" method="post">
+      <input id="stylist_id" name="stylist_id" type="hidden" value="<%= @stylist.id() %>">
+
+      <label for="name">Name of the client:</label>
+      <input id="name" name="name" type="text">
+
+      <button type="submit">Add client</button>
+    </form>
     <p>
       <a class="btn waves-effect waves-light red" href="/stylists/<%= @stylist.id() %>/edit">Edit</a>
       <form action="/stylists/<%= @stylist.id() %>" method="post">

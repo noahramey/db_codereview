@@ -17,7 +17,18 @@
 <div class="row container">
   <div class="center">
     <h2>Client Details</h2>
-    <br>
     <h4>Name: <%= @client.name() %></h4>
+    <% @stylists.each() do |stylist| %>
+      <% if stylist.id() == @client.stylist_id() %>
+        <h4>Stylist: <%= stylist.name() %></h4>
+      <% end %>
+    <% end %>
+    <p>
+      <a class="btn waves-effect waves-light red" href="/clients/<%= @client.id() %>/edit">Edit</a>
+      <form action="/clients/<%= @client.id() %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="btn waves-effect waves-light red" type="submit">Delete</button>
+      </form>
+    </p>
   </div>
 </div>
