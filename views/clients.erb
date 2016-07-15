@@ -2,17 +2,32 @@
   <div class="section no-pad-bot">
     <div class="container">
       <br><br>
-      <h1 class="header center red-text text-darken-2">Clients</h1>
+      <h1 class="header center blue-text text-darken-2">Clients</h1>
       <div class="row center">
-        <h5 class="header col s12 red-text text-darken-3">Here is a list of all of your current clients. Feel free to add a new client by clicking the "Add Client" button below, or return to the home page.</h5>
+        <h5 class="header col s12 blue-text text-darken-3">Here is a list of all of your current clients. Feel free to add a new client by clicking the "Add Client" button below, or return to the home page.</h5>
       </div>
       <div class="row center">
-        <a href="/clients/new" id="download-button" class="btn-large waves-effect waves-light red darken-1">Add Clients</a>
-        <a href="/" id="download-button" class="btn-large waves-effect waves-light red darken-1">Return Home</a>
+        <a href="/clients/new" id="download-button" class="btn-large waves-effect waves-light blue darken-1">Add Clients</a>
+        <a href="/" id="download-button" class="btn-large waves-effect waves-light blue darken-1">Return Home</a>
       </div>
       <br><br>
 
     </div>
   </div>
   <div class="parallax"><img src="<%= url('img/background1.jpg') %>" alt="Unsplashed background img 1"></div>
+</div>
+
+<div class="container">
+  <div class="row center">
+    <% if @clients.any?() %>
+      <ul class="collection with-header">
+        <li class="collection-header">Stylists</li>
+        <% @clients.each() do |client| %>
+          <li class="collection-item"><a href="/clients/<%= client.id() %>"><%= client.name() %></a></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2>There are no clients!</h2>
+    <% end %>
+  </div>
 </div>

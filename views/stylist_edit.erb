@@ -18,15 +18,15 @@
 </div>
 
 <div class="row container">
-  <form class="col s12" action="/clients" method="post">
-    <input type="hidden" name="stylist_id" id="stylist_id" value="0">
+  <form class="col s12" action="/stylists/<%= @stylist.id() %>" method="post">
+    <input type="hidden" name="_method" value="patch">
     <div class="row">
       <div class="input-field col s6">
-        <input type="text" placeholder="Client's Name" name="name" id="name" class="validate">
+        <input type="text" placeholder="Edit the Stylist's Name" name="name" id="name" class="validate">
         <label for="name"></label>
       </div>
     </div>
-    <button class="btn waves-effect waves-light" type="submit">Submit
+    <button class="btn waves-effect waves-light" type="submit">Update
       <i class="material-icons right">send</i>
     </button>
   </form>

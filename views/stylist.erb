@@ -1,0 +1,40 @@
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center blue-text text-lighten-1"><%= @stylist.name() %></h1>
+      <div class="row center">
+        <a href="/clients" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">View Other Clients</a>
+        <a href="/" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Return Home</a>
+      </div>
+      <br>
+
+    </div>
+  </div>
+  <div class="parallax"><img src="<%= url('img/background1.jpg') %>" alt="Unsplashed background img 1"></div>
+</div>
+
+<div class="row container">
+  <div class="center">
+    <h3>Stylist Details</h3>
+    <h5>Name: <%= @stylist.name() %></h5>
+    <br>
+    <% if @stylist.clients().any?() %>
+      <h3><%= @stylist.name() %>'s Clients</h3>
+      <% @stylist.clients().each() do |client| %>
+        <h5><%= client.name() %></h5>
+      <% end %>
+    <% else %>
+      <h3>This stylist has no clients.</h3>
+    <% end %>
+    <p>
+      <a class="btn waves-effect waves-light red" href="/stylists/<%= @stylist.id() %>/edit">Edit</a>
+      <form action="/stylists/<%= @stylist.id() %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="btn waves-effect waves-light red" type="submit">Delete</button>
+      </form>
+    </p>
+
+
+  </div>
+</div>

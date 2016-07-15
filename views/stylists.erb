@@ -1,0 +1,33 @@
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center blue-text text-lighten-1">Stylists</h1>
+      <div class="row center">
+        <h5 class="header col s12 blue-text text-lighten-2">View all of your stylists, as well as which clients each of them are responsible for.</h5>
+      </div>
+      <div class="row center">
+        <a href="/stylists/new" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Add Stylist</a>
+        <a href="/" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Return Home</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+  <div class="parallax"><img src="<%= url('img/background1.jpg') %>" alt="Unsplashed background img 1"></div>
+</div>
+
+<div class="container">
+  <div class="row center">
+    <% if @stylists.any?() %>
+      <ul class="collection with-header">
+        <li class="collection-header">Stylists</li>
+        <% @stylists.each() do |stylist| %>
+          <li class="collection-item"><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2>There are no stylists!</h2>
+    <% end %>
+  </div>
+</div>
