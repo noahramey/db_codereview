@@ -5,7 +5,7 @@ require('./lib/client')
 require('./lib/stylist')
 require('pg')
 
-DB = PG.connect({:dbname => "hair_salon"})
+DB = PG.connect({:dbname => "hair_salon_test"})
 
 get('/') do
   erb(:index)
@@ -26,6 +26,7 @@ get('/stylists/new') do
 end
 
 post('/clients') do
+  @stylists = Stylist.all()
   name = params.fetch('name')
   stylist_id = params.fetch('stylist_id').to_i()
   client = Client.new({name: name, stylist_id: stylist_id})
@@ -78,6 +79,7 @@ patch("/stylists/:id") do
 end
 
 patch("/clients/:id") do
+  @stylists = Stylist.all()
   id = params.fetch("id").to_i()
   @client = Client.find(id)
   if params.fetch('name') == ""
@@ -88,4 +90,18 @@ patch("/clients/:id") do
   stylist_id = params.fetch("stylist_id").to_i()
   @client.update({name: name, stylist_id: stylist_id})
   erb(:client)
+end
+
+delete("/clients/:id") do
+  @client = Client.find(params.fetch("id").to_i())
+  @client.delete()
+  @clients = Client.all()
+  erb(:clients)
+end
+
+delete("/stylists/:id") do
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  @stylist.delete()
+  @stylists = Stylist.all()
+  erb(:stylists)
 end

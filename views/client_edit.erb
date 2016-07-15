@@ -20,6 +20,11 @@
 <div class="row container">
   <form class="col s12" action="/clients/<%= @client.id() %>" method="post">
     <input type="hidden" name="_method" value="patch">
+    <% @stylists.each() do |stylist| %>
+      <% if stylist.id() == @client.stylist_id() %>
+        <input type="hidden" name="stylist_id" id="stylist_id" value="<%= stylist.id() %>">
+      <% end %>
+    <% end %>
     <div class="row">
       <div class="input-field col s12">
         <input type="text" placeholder="Edit the client's name" name="name" id="name" class="validate">
