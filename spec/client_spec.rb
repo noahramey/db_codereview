@@ -28,4 +28,21 @@ describe(Client) do
       expect(Client.all()).to(eq([]))
     end
   end
+
+  describe("#save") do
+    it('should insert the client into the the client table within the database') do
+      test_client = Client.new({first_name: "Jessica", last_name: "Brown"})
+      test_client.save()
+      expect(Client.all()).to(eq([test_client]))
+    end
+  end
+
+  describe("#update") do
+    it('should update a client from the table "clients"') do
+      test_client = Client.new({first_name: "Jessica", last_name: "Brown"})
+      test_client.save()
+      test_client.update({first_name: "John", last_name: "Smith"})
+      expect(test_client.first_name()).to(eq("John"))
+    end
+  end
 end
